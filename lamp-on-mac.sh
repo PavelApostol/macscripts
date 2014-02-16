@@ -19,7 +19,6 @@ read -s -p "Для продолжения нажми любую кнопку, д
 echo ;
 
 Acnf='/etc/apache2/httpd.conf';
-Pcnf='/etc/apa';
 My_tmp=`pwd`'/tmp_install_lamp'
 echo "Временная папка: "$My_tmp
 mkdir $My_tmp 
