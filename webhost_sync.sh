@@ -1,4 +1,6 @@
 #!/bin/bash
+# version 1.0 for LampOnMac 1.0 and MacOS 10.9
+# created by PavelBelyaev 2014
 #config
 d_prefix=".loc"
 vh_prefix="200-"
@@ -9,6 +11,10 @@ e_h="end auto web"
 hf="/etc/hosts"
 sites_enabled_path="/etc/apache2/sites-enabled"
 #end-config
+
+
+if [ ! -f $sites_enabled_path/$default_vh_file ]; then echo "Нет шаблона Vhost"; exit; fi
+
 
 rm $sites_enabled_path/$vh_prefix* #удаляем vhost конфиги пользовательских сайтов
 sed -ie "/\#$s_h/,/\#$e_h/ d" $hf #удаляем из файла hosts строки, созданные раннее скриптом
