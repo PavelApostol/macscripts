@@ -1,5 +1,5 @@
-#/bin/bash
-# version 1.0 for MacOS 10.9
+#!/bin/bash
+# version 1.1 for MacOS 10.9
 # created by Pavel Belyaev 2014
 if [ `id -u` -gt 0 ]; then 
 echo "Запустите скрипт от имени суперпользователя, для этого введите sudo имя_скрипта";
