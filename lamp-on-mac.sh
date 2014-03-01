@@ -41,7 +41,7 @@ rm -r ./mysql
 rm mysql*dmg
 export PATH="/usr/local/mysql/bin:$PATH"
 echo 'export PATH="/usr/local/mysql/bin:$PATH"' >> /etc/bashrc
-
+/usr/local/mysql/support-files/mysql.server start
 
 #задать пароль mysql root
 read -p "Введите пароль пользователя MYSQL для root: " mysql_p
