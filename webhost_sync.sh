@@ -4,7 +4,7 @@
 #config
 d_prefix=".loc"
 vh_prefix="200-"
-default_vh_file="000-default"
+default_vh_file="100-default"
 d_www="/www"
 s_h="start auto web"
 e_h="end auto web"

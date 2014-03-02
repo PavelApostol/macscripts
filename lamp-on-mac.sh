@@ -93,6 +93,21 @@ cp $Acnf $Acnf".back"
 sed -ie 's/#LoadModule php5_module/LoadModule php5_module/g' $Acnf
 sed -ie 's/DirectoryIndex index.html/DirectoryIndex index.php index.htm index.html/g' $Acnf
 sed -ie '/<Directory "\/Library.*/,/<\/Directory>/ d' $Acnf
+sed -ie 's|Include /private/etc/apache2/other/|#Include /private/etc/apache2/other/|g' $Acnf
+
+echo '
+NameVirtualHost *:80
+
+<Directory /www>
+        Options FollowSymLinks
+        Options Indexes
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+        AddType application/x-httpd-php .php
+</Directory>' >> $Acnf
+
+
 #sed -e '/#.*$/ d' $Acnf
 echo 'Include /etc/apache2/sites-enabled/*' >> $Acnf
 echo 'Include /usr/local/phpmyadmin/apache.conf' >> $Acnf
@@ -112,7 +127,7 @@ echo '<VirtualHost *:80>
         Allow from all
 </Directory>
 </VirtualHost>
-' > /etc/apache2/sites-enabled/000-default 
+' > /etc/apache2/sites-enabled/100-default 
 echo '<?php echo "Hello World!"; ?>' > /www/localhost/index.php
 
 
