@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 1.0 for LampOnMac 1.0 and MacOS 10.9
+# version 1.5 for LampOnMac 1.0+ and MacOS 10.9
 # created by PavelBelyaev 2014
 #config
 d_prefix=".loc"
@@ -12,6 +12,10 @@ hf="/etc/hosts"
 sites_enabled_path="/etc/apache2/sites-enabled"
 #end-config
 
+if [ `id -u` -gt 0 ]; then 
+echo "Запустите скрипт от имени суперпользователя, для этого введите sudo имя_скрипта";
+exit;
+fi
 
 if [ ! -f $sites_enabled_path/$default_vh_file ]; then echo "Нет шаблона Vhost"; exit; fi
 
@@ -27,3 +31,6 @@ ServerName $l$d_prefix
 ServerAlias www.$l$d_prefix" > "$sites_enabled_path/$vh_prefix$l$d_prefix"
 done
 echo '#'$e_h>>$hf
+
+apachectl restart
+
