@@ -1,13 +1,21 @@
 #!/bin/bash
-# myweb by Pavel Belyaev 2014
+# memclean by Pavel Belyaev 2014
 # Данный скрипт поможет в случае отключения автозапуска mysql и apache
 if [ `id -u` -gt 0 ]; then 
-echo "Запустите скрипт от имени супергероя, для этого введите sudo имя_скрипта";
+echo "Запустите скрипт от имени суперпользователя, для этого введите sudo имя_скрипта";
 exit;
 fi
 
-export PATH=$PATH:/usr/local/mysql/support-files/
 
+k ()
+{
+	killall -9 $1
+}
+
+k_messengers ()
+{
+	k 'Adium Viber Mail Skype'
+}
 
 startsrv ()
 {

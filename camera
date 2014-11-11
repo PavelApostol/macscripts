@@ -1,0 +1,34 @@
+#!/bin/bash
+# Данный скрипт блокирует досутп программ к камере
+if [ `id -u` -gt 0 ]; then
+echo "Запустите скрипт от имени суперпользователя, для этого введите sudo имя_скрипта";
+exit;
+fi
+
+c="chmod";
+
+
+ca () {
+$c $1 /Library/CoreMediaIO/Plug-Ins/DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera 
+$c $1 /Library/CoreMediaIO/Plug-Ins/FCP-DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera 
+$c $1 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
+}
+
+main () 
+{
+m=`cat /var/camstat`
+let "m=m*(-1)+1";
+echo $m > /var/camstat
+if [ $m == 1 ]; then 
+ca 755
+echo "Камера включена" 
+else
+echo "Камера отключена" 
+ca 000
+fi; 
+echo "Перезапустите программы, использующие камеру для применения изменений"
+} 
+
+main
+
+
