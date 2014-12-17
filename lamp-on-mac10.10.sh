@@ -145,6 +145,26 @@ sed -ie "s/mysql.default_socket.*$/mysql.default_socket = \/tmp\/mysql.sock/g" /
 sed -ie "s/mysqli.default_socket.*$/mysqli.default_socket = \/tmp\/mysql.sock/g" /etc/php.ini
 sed -ie "s/short_open_tag.*$/short_open_tag = On/g" /etc/php.ini
 sed -ie "s/mysql.default_port.*$/mysql.default_port = 3306/g" /etc/php.ini
+sed -ie "s/^upload_max_filesize.*$/upload_max_filesize = 900M/g" /etc/php.ini
+sed -ie "s/^post_max_size.*$/post_max_size = 900M/g" /etc/php.ini
+
+
+#memory economy mysql
+echo "# Robby's MySQL overrides (c)http://www.robbyonrails.com/articles/2013/11/24/reducing-mysqls-memory-usage-on-os-x-mavericks
+  [mysqld]
+  max_connections       = 10
+
+  key_buffer_size       = 16K
+  max_allowed_packet    = 1M
+  table_open_cache      = 4
+  sort_buffer_size      = 64K
+  read_buffer_size      = 256K
+  read_rnd_buffer_size  = 256K
+  net_buffer_length     = 2K
+  thread_stack          = 128K
+" >> /usr/local/mysql/my.cnf
+
+
 
 
 killall -9 httpd
