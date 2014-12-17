@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 1.5 for LampOnMac 1.0+ and MacOS 10.9
+# version 1.5 for LampOnMac 1.0+ and MacOS 10.9-10.10
 # created by PavelBelyaev 2014
 #config
 d_prefix=".loc"
