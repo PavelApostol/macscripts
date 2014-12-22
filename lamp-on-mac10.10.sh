@@ -92,6 +92,7 @@ echo -n "Создаем резервную копию http.conf ";
 cp $Acnf $Acnf".back"
 
 sed -ie 's/#LoadModule php5_module/LoadModule php5_module/g' $Acnf
+sed -ie 's/#LoadModule rewrite_module/LoadModule rewrite_module/g' $Acnf
 sed -ie 's/DirectoryIndex index.html/DirectoryIndex index.php index.htm index.html/g' $Acnf
 sed -ie '/<Directory "\/Library.*/,/<\/Directory>/ d' $Acnf
 sed -ie 's|Include /private/etc/apache2/other/|#Include /private/etc/apache2/other/|g' $Acnf
